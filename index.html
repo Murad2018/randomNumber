@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>week 5 challenge</title>
+</head>
+<body>
+
+	<h1>Guess the number!</h1>
+
+	<h2>Enter the number</h2>
+
+	<input id="userNumberInput" type="text" placeholder="Enter the number" name="Enter a number">
+	<button id="clicked" onclick="guessNumber()">Click me!</button>
+	<p id="message"></p>
+	
+	<script type="text/javascript">
+
+
+		var randomNumber = Math.floor(Math.random()*100)+1;
+		console.log(randomNumber);
+		
+		function guessNumber(){
+			var guessedNumber = document.getElementById("userNumberInput").value;
+			
+			if (guessedNumber < randomNumber){
+				document.getElementById("message").innerHTML = ("You guessing too low! (" + guessedNumber + ")");
+			} else if (guessedNumber>randomNumber){
+				document.getElementById("message").innerHTML = ("You guessing too high! (" + guessedNumber + ")");
+			} else if(guessedNumber == randomNumber){
+				document.getElementById("message").innerHTML = ("Congratulations, you have guessed the right number!");
+			}
+		}
+			document.getElementById("clicked").addEventListener("click", myFunction);
+
+				var clickCount = 0;
+				var maxChances = 3;
+
+			function myFunction(){
+				clickCount++;
+				if(clickCount<maxChances){
+				document.getElementById("message").innerHTML += " " + maxChances - clickCount + " guesses remaining";
+				}else if(clickCount==maxChances){
+					document.getElementById("message").innerHTML += "You have reached maximum chances! Try again!";
+					this.disabled = true;
+				}
+			}
+
+						
+	</script>
+</body>
+</html>
+
